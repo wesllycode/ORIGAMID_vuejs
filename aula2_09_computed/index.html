@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Aula2 - 09 - Computed</title>
+
+</head>
+<body>
+
+    <div id="app">
+        <h3>O interessante do computed serve quando quero criar <br>uma lógica ou regra de negócio e para não ficar me <br>repetindo no meu código todo.</h3>
+       <p> Valor total => {{ total }}</p>
+       
+    </div>
+    
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                preco: 59,
+                desconto: 10,
+                            },
+            computed: {
+                total(){
+                    return "R$" + (this.preco - this.desconto);
+                }
+            }
+        });
+    
+    </script>
+</body>
+</html>
