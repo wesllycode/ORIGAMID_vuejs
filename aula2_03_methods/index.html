@@ -9,31 +9,23 @@
 </head>
 <body>
     
-    <div id="app">
-        {{ total }}
-      <button @click="incrementar">Incrementar</button>
-      <button @click="descrementar">Descrementar</button>
-    </div>
-    <script>
-        const vm = new Vue({
-            el: "#app",
-            data: {
-                total : 0,
-            },
-            methods: {
-                // Criando um método. Método é uma propriedade levando uma função, caso contrário, apenas propriedade normal
-            
-            incrementar: function () {
-                this.total++
-            },
-            // Sintese curta do ES6
-            descrementar() {
-                this.total--
+ <div id="app">
+     {{ compra }}
+     <button @click="mudarCompra('Guitarra')">Guitarra</button>
+     <button @click="mudarCompra('Violão')">Violão</button>
+ </div>
+ <script>
+     const vm = new Vue ({
+        el: "#app",
+        data: {
+            compra: ""
+        },
+        methods: {
+            mudarCompra(instrumento) {
+                this.compra = instrumento;
             }
-
-            }
-        });
-   
-    </script>
+        }
+     });
+ </script>
 </body>
 </html>
