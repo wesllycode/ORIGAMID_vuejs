@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Exercicio da Aula 2 - 03 sobre Methods</title>
+</head>
+<body>
+    
+ <div id="app">
+  <P>{{ preco }}</P>
+  <button @click="adicionarCupom">Adicionar Cupom</button>
+ </div>
+ <script>
+   const vm = new Vue({
+       el: "#app",
+       data: {
+           preco: 149,
+           alerta: ""
+       },
+       methods: {
+           adicionarCupom(){
+               this.preco *= 0.9;
+               this.alertaCupom();
+           },
+           alertaCupom(){
+               alert("Cupom de Desconto Adicionado com Sucesso !");
+           }
+       }
+   })
+ </script>
+</body>
+</html>

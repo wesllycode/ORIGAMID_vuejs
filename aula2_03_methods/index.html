@@ -5,31 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="vue.js"></script>
-    <title>Exercicio da Aula 2 - 03 sobre Methods</title>
+    <title>Exercicio da Aula 2 - 03 sobre Methods - Exercicio</title>
 </head>
 <body>
-    
- <div id="app">
-  <P>{{ preco }}</P>
-  <button @click="adicionarCupom">Adicionar Cupom</button>
+    <!--
+    Utilizando a API
+    https://api.iextrading.com/1.0/stock/aapl/quote
+  
+    Crie um método que faça o fetch da resposta acima
+    O método deve ser ativado ao clique no botão Ver Preço
+  
+    Coloque a resposta json do fetch em uma data e
+    mostre o valor de lalestPrice, latestTime e o
+    companyName na interface.
+  -->
+
+ <div id="app">   
+   
+    <p>LatesTime:  {{ acoes.latestTime }} </p>
+    <p>LatestPrice: {{ acoes.latestPrice }}</p>
+    <p>CompanyName: {{ acoes.companyName }} </p>
+    <button @click="puxarAPI">AÇÕES</button>
  </div>
+
+
  <script>
-   const vm = new Vue({
-       el: "#app",
-       data: {
-           preco: 149,
-           alerta: ""
-       },
-       methods: {
-           adicionarCupom(){
-               this.preco *= 0.9;
-               this.alertaCupom();
-           },
-           alertaCupom(){
-               alert("Cupom de Desconto Adicionado com Sucesso !");
-           }
-       }
-   })
+    const api = new Vue ({
+        el: "#app",
+        data: {
+            acoes: {},
+        },
+        methods: {
+            puxarAPI(){
+                fetch("https://cloud.iexapis.com/stable/stock/nvda/quote?token=pk_4cd1f2fb6ede4ae49e8f2c74b51ccc7d")
+                .then(response => response.json())
+                .then(json => {
+                    this.acoes = json;                  
+                })
+            }
+        
+        }
+    })
  </script>
 </body>
 </html>
