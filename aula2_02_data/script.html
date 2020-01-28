@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Aula sobre Data 3</title>
+</head>
+<body>
+    <div id="app">
+        <p> {{ frutas [0] }} </p>
+        <p> {{ frutas [1] }} </p>
+        <p> {{ titulo }}</p>
+    </div>
+    <script>
+        const vm = new Vue ({
+            el: "#app",
+            data : {
+                titulo: "Pablo",
+                comprou: true,
+                total: 49,
+                vitalicio: null, 
+                objeto: {
+                    item: "item 1 "
+                },
+                frutas: ["Banana", "Uva"]
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula sobre DATA</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>  {{ titulo }} </h1>
+    </div>
+
+    <script>
+        const vm = new Vue ({
+            el: "#app",
+            data: {
+                titulo: "Meu nome é Pablo"
+            }
+        })
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Aula sobre Data</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>  
+  <script>
+      const vm = new Vue ({
+          el: "#app",
+          data: {
+              logado: ""
+          }
+      });
+
+      setTimeout(() => {
+          vm.logado = "sim";
+      }, 2000);
+  </script>
+</body>
+</html>
+-->
