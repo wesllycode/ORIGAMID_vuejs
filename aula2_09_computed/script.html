@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Aula2 - 09 - Watch</title>
+
+</head>
+<body>
+
+    <div id="app">          
+        <p>{{contador}}</p>
+      <button @click="contador++">Adicionar</button>
+     
+      
+    </div>
+    
+
+    <script>
+      const app = new Vue ({
+          el: "#app",
+          data: {
+              contador: 0,
+          },
+          watch: {
+              /* 
+              Fica de olho se houve modificação em determinado dado reativo que eu
+              escolher, caso aconteça, ele executa a propriedade/função abaixo. 
+              */
+              contador(){
+                return "Contador adicionado com sucesso";              
+              }
+          }
+
+      });
+    </script>
+</body>
+</html>

@@ -5,55 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="vue.js"></script>
-    <title>Aula2 - 09 - Computed</title>
+    <title>Aula2 - 09 - Watch Assincrono</title>
 
 </head>
 <body>
 
     <div id="app">          
-       <ul>
-           <li v-for="carro in corAzul">
-                {{carro.marca}} 
-           </li>
-           <button @click="removerCarro">Remover</button>
-       </ul>
-      
+      Informe seu cep: <input type="text" placeholder="cep" maxlength="8" v-model="cep"/>
+      <h3>{{cep}}</h3>  
+      {{ resultadoCEP}}
     </div>
     
 
     <script>
-       const vm = new Vue ({
-            el: "#app",
-            data: {
-                carros:[
-            {
-                    marca: "VW",
-                    cor: "Azul",
-            
-            },
-            {
-                    marca: "Ford",
-                    cor: "Preto",
-            },
-            {       marca: "Tesla",
-                    cor: "Azul",             
+     const app = new Vue ({
+         el: "#app",
+         data: {
+             cep: "",
+             resultadoCEP: ""
+         }, 
+         watch : {
+            cep(numeroDoCep){
+                if(numeroDoCep.length === 8)
+                {
+                    fetch(`http://viacep.com.br/ws/${numeroDoCep}/json`)
+                    .then(r => r.json())
+                    .then(r => {
+                    this.resultadoCEP = r;
+                    }); 
+                }               
             }
-        ]
-             },
-       computed: {
-            corAzul(){
-                return this.carros.filter(({cor}) => cor === "Azul");      
-              
-                }
-            },
-        methods: {
-            // Aqui ele mostrou questão da reatividade mesmo deletando, ele deletar os dos carros azusi pois ja tem propriedade anterior funcionando chamando pelo this,carros
-            removerCarro(){
-                this.carros.pop();
-            }
-        }           
-       });
-    
+         }
+     });
     </script>
 </body>
 </html>
