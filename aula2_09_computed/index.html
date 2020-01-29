@@ -10,26 +10,42 @@
 </head>
 <body>
 
-    <div id="app">
-        <h3>O interessante do computed serve quando quero criar <br>uma lógica ou regra de negócio e para não ficar me <br>repetindo no meu código todo.</h3>
-       <p> Valor total => {{ total }}</p>
-       
+    <div id="app">          
+       <ul>
+           <li v-for="carro in corAzul">
+                {{carro}} 
+           </li>
+       </ul>
+      
     </div>
     
 
     <script>
-        const app = new Vue({
+       const vm = new Vue ({
             el: "#app",
             data: {
-                preco: 59,
-                desconto: 10,
-                            },
-            computed: {
-                total(){
-                    return "R$" + (this.preco - this.desconto);
-                }
+                carros:[
+            {
+                    marca: "VW",
+                    cor: "Azul",
+            
+            },
+            {
+                    marca: "Ford",
+                    cor: "Preto",
+            },
+            {       marca: "Tesla",
+                    cor: "Azul",             
             }
-        });
+        ]
+             },
+       computed: {
+            corAzul(){
+                return this.carros.filter(({cor}) => cor === "Azul");      
+              
+                }
+            }            
+       });
     
     </script>
 </body>
