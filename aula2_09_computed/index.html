@@ -13,8 +13,9 @@
     <div id="app">          
        <ul>
            <li v-for="carro in corAzul">
-                {{carro}} 
+                {{carro.marca}} 
            </li>
+           <button @click="removerCarro">Remover</button>
        </ul>
       
     </div>
@@ -44,7 +45,12 @@
                 return this.carros.filter(({cor}) => cor === "Azul");      
               
                 }
-            }            
+            },
+        methods: {
+            removerCarro(){
+                this.carros.pop();
+            }
+        }           
        });
     
     </script>
