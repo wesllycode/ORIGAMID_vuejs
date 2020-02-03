@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">"
+    <title>Aula2 - 09 - Exercicio Computed Watch 2</title>
+
+</head>
+<body>
+<!--
+  Você possui o nome e sobrenome do usuário em data,
+  crie uma propriedade computed que retorne o nome completo
+  
+  Utilize a rest API para puxar as capitais dos paises
+  Use um campo de select, onde o usuário pode selecionar o país.
+  https://restcountries.eu/rest/v2/all
+
+  Com uma função watch, mude a capital de acordo com o país selecionado:
+
+  Ex de campo select:
+
+  <select name="paises" id="paises" v-model="selecionado">
+    <option v-for="pais in paises" :value="pais.name">
+      {{pais.name}}
+    </option>
+  </select>
+-->    
+<div id="container" align="center">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-12">
+            <div class="col-8">
+
+
+
+            </div>
+        </div>
+    </div>    
+<div id="app">
+    
+    {{ nome }}
+    {{ sobrenome }}
+    <br>
+   
+    <p> Escolha sua capital</p>
+
+    <!--
+        Como API json estava vindo em uma array, o que pensei ? Fazer com que cada objeto seja exibido em uma array.
+        Quer dizer, uma capital -> tinha os seus dados, cada  array é uma capital com os seus dados.
+        Como poderia chamar cada objeto na sua respectiva array ? Usei o
+        v-for = ("capital, index") in capitais" quer dizer vai colocar na variável capital o index de cada array
+        vindo da váriavel capitais que está recebendo a os dados da API JSON.
+
+        Portanto, váriavel capital está recebendo os valores vindo da váriavel capitais.
+
+
+        Outro ponto importante, como vou exibir os dados da API sem precisar chamar através de um evento ?
+        Usei um dos LifyCycle do Vue.js.
+
+        Toda aplicação tem um processo antes de iniciar por completo. Portanto, usei o created, para ele já puxar os meus dados antes de iniciar a aplicação como toda
+        e então quando puxo ela na minha aplicação, ela já está lá, por que foi iniciada antes de aplicação tiver completa para ser exibida.
+    -->
+    <select v-model="capturarNomeCapital" name="select">
+        <!-- 
+            Caso seja IPHONE utilize
+            <select v-model="capturarNomeCapital" multiple>
+
+                Parece no IPHONE não aceita desabilitado da primeira opção e causando não
+                o select direito para selecionar o item.       
+        -->
+        <option disabled> Selecione sua capital</option>
+        <!-- Jogada aqui é o seguinte.. o importante esse in capitais pois é daqui esta vindo os resultados
+         o capitalSelecionada, index só para eu inserir os dados ai dentro e do outro lado eu chamar capitalSelecionada.capital, depois do 
+        ponto vai de acordo com informaçoes que sua API fornece-->
+        <option :value="capitalSelecionada.capital" v-for="(capitalSelecionada, index) in capitais">{{ capitalSelecionada.capital }} </option>      
+      
+    </select>
+
+     
+    
+   
+<!--
+    <div v-for="(capital, chave) in nomeDoPaisDaCapitalSelecionada">{{ chave }}: {{ valor }}</div>    
+-->
+
+<h3> O pais da sua capital é: </h3>
+<p v-for="(pais, index) in paisDessaCapital">
+    <span>{{ pais.name }}</span>     
+    <img :src="pais.flag">
+    
+</p>
+
+   <button @click="puxarAPI" class="btn btn-success">Atualizar</button>
+</div>
+</div>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            nome: "PW",
+            sobrenome: "Código",           
+            capitais: [],
+            capturarNomeCapital: "",
+            exibirNomedoPais: {},
+            paisDessaCapital: {},
+            paises: []
+            
+                 
+            
+        },
+        created: function(){
+            this.puxarAPI();          
+        },
+        methods: {
+            puxarAPI(){
+                fetch(`https://restcountries.eu/rest/v2/capital/all`)
+                .then(res => res.json())                     
+                .then(res => {
+                    this.capitais = res;
+                    console.log("Atualizou")
+                });
+            }
+        },
+               
+        /* 
+            Problema que encontrei nome da Capital primeira letra é maiuscula, vou ter que usar uma funcao
+            no computed
+        */
+        watch:{
+            capturarNomeCapital(NomeDaCapital){               
+                fetch(`https://restcountries.eu/rest/v2/capital/${NomeDaCapital}`)
+                .then(r => r.json())
+                .then(r => {
+                    this.paisDessaCapital = r;
+                });
+            
+            },   
+        }
+       
+    });
+</script>
+</body>
+</html>
