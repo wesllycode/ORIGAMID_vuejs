@@ -5,29 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="vue.js"></script>
-    <title>Modulo 5 - aula 01 - Componente</title>
+    <title>Modulo 5 - aula 01 - Global vs Local</title>
 </head>
 <body>
     <div id="app">
-        <botao-contador></botao-contador>
+       <componente-local></componente-local>
+       <componente-global></componente-global>
     </div>
-    <script>  
-        Vue.component("BotaoContador", {
-            data(){
-                return {
-                    total:0,
-                }
-            },
-            template: `<button @click="total++">Contador: {{ total }}</button>`,
-        });
+   <!-- Outro forma de fazer
+          <script>  
+       const ComponenteLocal = {
+           name: "ComponenteLocal",
+           template: `<p>Local</p>`
+       };
+       
+       Vue.component("ComponenteGlobal", {
+            template: '<p>Global</p>'
+       });
 
-        const app = new Vue({
+       /*
+        Quando preciso criar componente local preciso instanciar dentrp
+       */
+       const app = new Vue({
             el: "#app",
-            data:{
-                
-            }
+            components: {
+                ComponenteLocal
+            }           
         });
         
     </script>
+    -->
+    <script>
+        Vue.component("ComponenteGlobal", {
+            template: `<p>Global</p>`
+        });
+
+        const app = new Vue  ({
+            el: "#app",                          
+                components: {
+                    ComponenteLocal:{
+                        name: "ComponenteLocal",
+                        template: `<p>Local</p>`
+                    }
+                }          
+        });
+       
+    </script>
+  
+
+   
 </body>
 </html>
