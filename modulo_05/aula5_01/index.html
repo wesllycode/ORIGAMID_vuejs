@@ -10,6 +10,7 @@
 <body>
     <div id="app">
        <componente-local></componente-local>
+       <componente-local2></componente-local2>
        <componente-global></componente-global>
     </div>
    <!-- Outro forma de fazer
@@ -58,10 +59,17 @@
   <script>
   
 
+   
     const ComponenteLocal = {
-        name: "ComponenteLocal",
-        template: `<p> Local </p>`
+            name: "ComponenteLocal",
+            template: `<p> Local1 </p>`
     }
+
+    const ComponenteLocal2 = {
+            name: "ComponenteLocal2",
+            template: `<p> Local2 </p>`
+    }
+    
 
     Vue.component("ComponenteGlobal", {
         template: `<p>Global</p>`
@@ -70,7 +78,8 @@
     const app = new Vue({
         el: "#app",
         components:{
-            ComponenteLocal
+            ComponenteLocal,
+            ComponenteLocal2
         }
 
     });
