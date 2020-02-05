@@ -9,9 +9,10 @@
 </head>
 <body>
     <div id="app">
-       <componente-local></componente-local>
-       <componente-local2></componente-local2>
-       <componente-global></componente-global>
+        <componente-local></componente-local>  
+        <!--    
+            componente-global></componente-global>
+        -->
     </div>
    <!-- Outro forma de fazer
           <script>  
@@ -62,15 +63,30 @@
    
     const ComponenteLocal = {
             name: "ComponenteLocal",
-            template: `<p> Local1 </p>`
+            data(){
+                return {
+                    contar: 20,
+                }
+            },
+            template: `<div>
+                            <p> Contar o dobro : {{ contarDobro }} </p>
+                            <p> contar: {{ contar }} </p>
+
+                            <br>
+                            <p> Posso colocar aqui componente Global por ser Global
+                                pode pegar em qualquer lugar                                
+                            </p>
+                          <componente-global></componente-global>
+                           
+                        </div>`,
+            computed: {
+                contarDobro() {
+                    return this.contar * 2;
+                }
+            }
     }
 
-    const ComponenteLocal2 = {
-            name: "ComponenteLocal2",
-            template: `<p> Local2 </p>`
-    }
-    
-
+   
     Vue.component("ComponenteGlobal", {
         template: `<p>Global</p>`
     });
@@ -78,8 +94,7 @@
     const app = new Vue({
         el: "#app",
         components:{
-            ComponenteLocal,
-            ComponenteLocal2
+            ComponenteLocal,            
         }
 
     });
