@@ -35,6 +35,8 @@
         
     </script>
     -->
+
+    <!-- outra forma de fazer  
     <script>
         Vue.component("ComponenteGlobal", {
             template: `<p>Global</p>`
@@ -51,7 +53,29 @@
         });
        
     </script>
+  -->
+
+  <script>
   
+
+    const ComponenteLocal = {
+        name: "ComponenteLocal",
+        template: `<p> Local </p>`
+    }
+
+    Vue.component("ComponenteGlobal", {
+        template: `<p>Global</p>`
+    });
+
+    const app = new Vue({
+        el: "#app",
+        components:{
+            ComponenteLocal
+        }
+
+    });
+    
+  </script>
 
    
 </body>
