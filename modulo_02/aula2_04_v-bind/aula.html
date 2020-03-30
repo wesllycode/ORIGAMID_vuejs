@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Curso Vue.js Completo - V-bind</title>
+    <script src="/js/vue.js"></script>       
+    </head>
+    
+<body>
+
+    <!--
+  Utilizando as API's
+  https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_4cd1f2fb6ede4ae49e8f2c74b51ccc7d
+  https://cloud.iexapis.com/stable/stock/googl/quote?token=pk_4cd1f2fb6ede4ae49e8f2c74b51ccc7d
+
+  - Compare o marketCap (valor de
+  mercado) entre ambas.
+
+  - Mostre o nome das empresas e o valor
+  na interace (companyName e marketCap).
+
+  - Mude a cor para verde o nome da empresa com
+  maior marketCap e vermelho a com menor.
+-->
+    <div id="app">
+        
+        <select v-model="valorone" name="select">
+            <option disabled>Selecione</option>
+            <option value="aapl">Apple</option>
+            <Option value="googl">Google</Option>
+        </select>
+       
+        <span style="margin-left:10px;"> Nome da Ação : <b>{{ acoesOne.companyName }}</b> </span>  
+        <span style="margin-left:10px;" > Valor da Ação: {{ acoesOne.marketCap }} </span> 
+               
+        <hr>
+
+        <select v-model="valortwo" name="select">
+            <option disabled>Selecione</option>
+            <option value="aapl">Apple</option>
+            <Option value="googl">Google</Option>
+        </select>
+        
+        <span style="margin-left:10px;">Nome da ação : <b> {{ acoesTwo.companyName }}</b></span>        
+        <span style="margin-left:10px;">Valor da Ação : {{ acoesTwo.marketCap }}</span>
+
+     
+
+            
+        <br>
+         <input type="hidden" v-model="valorAlto">
+         <p :class="resultado ? 'verde' : 'vermelho'"> Cor </p>
+        <p> {{ resultado }} </p>
+   
+
+
+        
+    </div>
+<style>
+    .verde{
+        color:green;
+    }
+
+    .vermelho{
+        color:red;
+    }
+</style>
+    <script>
+        const vm = new Vue ({
+            el: "#app",
+            data:{
+                valorone: "",
+                acoesOne: "",
+                valortwo: "",
+                acoesTwo: "",
+                resultado: ""              
+               
+                                                                           
+                
+            },
+            computed:{
+                valorAlto(){                  
+                        return this.resultado = false;         
+                        
+                    }
+                    
+                },
+
+           watch: {
+            valorone(nomeDaAcaoOne){
+                    if(nomeDaAcaoOne.length > 0){
+                       fetch(`https://cloud.iexapis.com/stable/stock/${nomeDaAcaoOne}/quote?token=pk_4cd1f2fb6ede4ae49e8f2c74b51ccc7d`)
+                       .then(r => r.json())
+                       .then( r => { this.acoesOne = r;});
+                    }                  
+                },
+                    
+            valortwo(nomeDaAcaoTwo){
+                    if(nomeDaAcaoTwo.length > 0){
+                       fetch(`https://cloud.iexapis.com/stable/stock/${nomeDaAcaoTwo}/quote?token=pk_4cd1f2fb6ede4ae49e8f2c74b51ccc7d`)
+                       .then(r => r.json())
+                       .then( r => { this.acoesTwo = r;});
+                    }                  
+                },              
+           
+            }            
+        });
+       
+    </script>
+
+   
+</body>
+</html>

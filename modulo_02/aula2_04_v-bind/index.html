@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Curso Vue.js Completo - V-bind</title>
+    <script src="/js/vue.js"></script>       
+    </head>
+    
+<body>
+
+    <div id="app">
+        <a  v-bind:href="link"> Meu link</a><br>
+        <a  v-bind:style="cor">Mudei a cor</a>
+        <p  v-bind:class="comprou ? 'verde' : 'vermelho'"> Comprou</p>
+    </div>
+
+
+    <script>
+        const api = new Vue ({
+        el: "#app",
+        data: {      
+                link: "https://coronavirus.ibiapaba24horas.com",
+                cor: "color:red",
+                comprou: false,
+            }
+            
+        });
+    </script>
+
+   
+</body>
+</html>
