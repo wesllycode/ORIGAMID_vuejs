@@ -35,7 +35,7 @@
         <span style="margin-left:10px;"> Nome da Ação : <b>{{ acoesOne.companyName }}</b> </span>
         <input type="hidden" v-model="valorAlto">   
         <span style="margin-left:10px;" > Valor da Ação:             
-            <span :class="resultado ? 'verde' : 'vermelho'">
+            <span :class="verificador(acoesOne.latestPrice, acoesTwo.latestPrice) ? 'verde' : 'vermelho'">
                 {{ acoesOne.latestPrice }} 
             </span>
         </span> 
@@ -50,16 +50,13 @@
         
         <span style="margin-left:10px;">Nome da ação : <b> {{ acoesTwo.companyName }}</b></span>        
         <span style="margin-left:10px;">Valor da Ação :            
-            <span :class="resultadoTwo ? 'verde' : 'vermelho'">
+            <span :class="verificador(acoesTwo.latestPrice, acoesOne.latestPrice ) ? 'verde' : 'vermelho'">
                 {{ acoesTwo.latestPrice }}
             </span>
         </span>
 
-         
-   
-
-
-        
+        <br>
+        Verificador: {{ verificador(this.acoesOne.latestPrice, this.acoesTwo.latestPrice) }}  
     </div>
 <style>
     .verde{
@@ -80,41 +77,22 @@
                 valorone: "",
                 acoesOne: "",
                 valortwo: "",
-                acoesTwo: "",
-                resultado: "",
-                resultadoTwo: ""
-                           
-               
-                                                                           
-                
+                acoesTwo: "",                        
             },
-           
-            computed:{
-                valorAlto(){                     
-                    // Qual ideia daqui - Que ele verifique o valor da primeira ação se é maior ou menor do que a segunda ação  se for maior ele coloca de cor verde o valor da maior e o valor da menor de vermelho.
-                    
-                    if(this.acoesOne.latestPrice > this.acoesTwo.latestPrice){
-                        this.resultado = true;
-                        this.resultadoTwo = false;
-                    }else if (this.acoesOne.latestPrice < this.acoesTwo.latestPrice){
-                         this.resultado = false;
-                         this.resultadoTwo = true;
-                    }else if (this.acoesOne.latestPrice === this.acoesTwo.latestPrice){
-                        this.resultado = true;
-                        this.resultadoTwo = true;
+            methods:{
+                verificador (val1, val2) {
+                    return val1 >= val2
+                } 
+            }, 
 
-                    }
-                }
-            },
+            /* 
+                Aqui uso Watch porque tem ele função assicrona de levar e voltar o valor que eu quero. Aqui 
+                estou puxando dados para ação 1 vindo do meu select. Ai eu insiro o valor na variável
+                nomeDaAcaoOne e verifico se maior que 0 caracteres e puxo dados na API de acordo com nome da ação que solicitei no
+                select.  Interessante que função tem que ser o nome do v-model nesse caso é valorone.
 
-        /* 
-            Aqui uso Watch porque tem ele função assicrona de levar e voltar o valor que eu quero. Aqui 
-            estou puxando dados para ação 1 vindo do meu select. Ai eu insiro o valor na variável
-            nomeDaAcaoOne e verifico se maior que 0 caracteres e puxo dados na API de acordo com nome da ação que solicitei no
-            select.  Interessante que função tem que ser o nome do v-model nesse caso é valorone.
-
-            Como são dois valores que vou precisar para valor 1 e valor 2 precisei criar duas funcoes para chamar api.
-        */
+                Como são dois valores que vou precisar para valor 1 e valor 2 precisei criar duas funcoes para chamar api.
+            */
            watch: {
             valorone(nomeDaAcaoOne){
                     if(nomeDaAcaoOne.length > 0){
@@ -133,10 +111,7 @@
                 },              
            
             }            
-        });
-       
-    </script>
-
-   
+        });       
+    </script>   
 </body>
 </html>

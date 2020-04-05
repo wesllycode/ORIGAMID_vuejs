@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2 - Aula 8 - V-for</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+
+    <!-- 
+            O QUE É V-FOR ?
+            Ele renderiza uma lista de itens. Assim como for loop, ele irá executar para cada item da array/objeto.
+    
+    -->
+
+    <div id="app">
+        <ul>
+            <li v-for="(curso,index) in cursos">
+                {{ curso }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const vm  = new Vue ({
+            el: "#app",
+            data:{
+                cursos: [ "css", "html", "javascript","flutter","dev"]
+            }
+        });
+    </script>
+    
+    <style scoped>
+        #app{
+            color:black;
+        }
+    </style>
+</body>
+</html>
