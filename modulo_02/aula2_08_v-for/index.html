@@ -3,80 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 2 - Aula 8 - V-for</title>
+    <title>Módulo 2 - Aula 8 - V-for | Exercicio</title>
     <script src="/js/vue.js"></script>
 </head>
 <body>
 
-<!-- 
-            O QUE É V-FOR ?
-            Ele renderiza uma lista de itens. Assim como for loop, ele irá executar para cada item da array/objeto.
-    
-    
+<!--
+  Utilizando a api:
+  https://viacep.com.br/ws/04538133/json/
+  Mostre o cep, logradouro, complemento, bairro, localidade e uf do que for retornado.
 
-                                Exemplo 2 
-<div id="app"> 
-
-    // Comentar
-    Trabalhando com objeto    
-        Esse código siginifica destruturar o objeto. Contudo, não posso mais acessar da seguinte forma categoria.tipo
-        <p v-for="({tipo},chave) in categorias">{{ tipo }} </p>
-
-        outro exemplo 
-
-    // Comentar
-    <p v-for="({tipo, marca}) in categorias">{{ tipo }} {{ marca }} </p>
-   
-    <p v-for="(categoria,chave) in categorias">{{ categoria }} </p>      
-</div>
+  
+  Use o arquivo json da aula, para listar os cursos e as matérias.
 -->
+
 <div id="app">
+    
+        <p>
+            <!-- <span> {{ endereco }} </span> -->            
+        </p>
+
         <ul>
-            <li v-for="(item) in lista">{{ item }}</li>
+            <li v-for="(dados,chave) in endereco">
+                {{ chave }} : {{ dados }}</li>
         </ul>
-
-        <button @click="removerItem">Remover</button>
-        <button @click="modificarItem">Modificar</button>
-
+    
 </div>
-<script >
-    const vm  = new Vue ({
+
+<script>
+    const app = new Vue ({
         el: "#app",
-        data: {
-            lista:["1","2","3"]
+        data:{
+            endereco: {},
         },
-        methods:{
-            removerItem() {
-                this.lista.pop(); // Ativa reatividade
-            },
-            modificarItem() {
-                this.$set(this.lista, 0, "banana"); // Com reatividade
-                //this.lista[0] = "banana"; // Sem reatividade
+      created: function(){
+        this.api();
+      },        
+      methods:{
+            api(){
+                fetch(`https://viacep.com.br/ws/04538133/json/`)
+                .then(res => res.json())                     
+                .then(res => { this.endereco = res; });
             }
         }
     });
-
-    /*
-    Exemplo 02
-    const app  = new Vue ({
-        el: "#app",
-        data: {
-            categorias: {
-                informatica: {
-                    tipo: "notebook",
-                    marca: "dell"
-                },
-                televisao: {
-                    tipo: "smart-tv",
-                    marca: "samsug"
-                }
-            }
-        }
-    })
-*/
 </script>
-
-
 
 
 </body>

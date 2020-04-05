@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2 - Aula 8 - V-for</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+
+<!-- 
+            O QUE É V-FOR ?
+            Ele renderiza uma lista de itens. Assim como for loop, ele irá executar para cada item da array/objeto.
+    
+    
+
+                                Exemplo 2 
+<div id="app"> 
+
+    // Comentar
+    Trabalhando com objeto    
+        Esse código siginifica destruturar o objeto. Contudo, não posso mais acessar da seguinte forma categoria.tipo
+        <p v-for="({tipo},chave) in categorias">{{ tipo }} </p>
+
+        outro exemplo 
+
+    // Comentar
+    <p v-for="({tipo, marca}) in categorias">{{ tipo }} {{ marca }} </p>
+   
+    <p v-for="(categoria,chave) in categorias">{{ categoria }} </p>      
+</div>
+-->
+<div id="app">
+        <ul>
+            <li v-for="(item) in lista">{{ item }}</li>
+        </ul>
+
+        <button @click="removerItem">Remover</button>
+        <button @click="modificarItem">Modificar</button>
+
+</div>
+<script >
+    const vm  = new Vue ({
+        el: "#app",
+        data: {
+            lista:["1","2","3"]
+        },
+        methods:{
+            removerItem() {
+                this.lista.pop(); // Ativa reatividade
+            },
+            modificarItem() {
+                this.$set(this.lista, 0, "banana"); // Com reatividade
+                //this.lista[0] = "banana"; // Sem reatividade
+            }
+        }
+    });
+
+    /*
+    Exemplo 02
+    const app  = new Vue ({
+        el: "#app",
+        data: {
+            categorias: {
+                informatica: {
+                    tipo: "notebook",
+                    marca: "dell"
+                },
+                televisao: {
+                    tipo: "smart-tv",
+                    marca: "samsug"
+                }
+            }
+        }
+    })
+*/
+</script>
+
+
+
+
+</body>
+</html>
