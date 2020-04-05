@@ -13,28 +13,35 @@
             Ele renderiza uma lista de itens. Assim como for loop, ele irá executar para cada item da array/objeto.
     
     -->
+<div id="app"> 
+    <!-- Trabalhando com objeto -->   
+    <!-- 
+        Esse código siginifica destruturar o objeto. Contudo, não posso mais acessar da seguinte forma categoria.tipo
+        <p v-for="({tipo},chave) in categorias">{{ tipo }} </p>
 
-    <div id="app">
-        <ul>
-            <li v-for="(curso,index) in cursos">
-                {{ curso }}
-            </li>
-        </ul>
-    </div>
+        outro exemplo 
 
-    <script>
-        const vm  = new Vue ({
-            el: "#app",
-            data:{
-                cursos: [ "css", "html", "javascript","flutter","dev"]
+        <p v-for="({tipo, marca}) in categorias">{{ tipo }} {{ marca }} </p>
+    -->
+    <p v-for="(categoria,chave) in categorias">{{ categoria }} </p>      
+</div>
+
+<script >
+    const app  = new Vue ({
+        el: "#app",
+        data: {
+            categorias: {
+                informatica: {
+                    tipo: "notebook",
+                    marca: "dell"
+                },
+                televisao: {
+                    tipo: "smart-tv",
+                    marca: "samsug"
+                }
             }
-        });
-    </script>
-    
-    <style scoped>
-        #app{
-            color:black;
         }
-    </style>
+    })
+</script>
 </body>
 </html>
