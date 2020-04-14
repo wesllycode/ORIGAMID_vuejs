@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3 - Aula 5 - LifeCycle | Parte 1</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        {{ github }}
+    </div>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data:{
+            mensagem: "Mensagem",
+            github: {}
+        },
+        methods: {
+            puxarGithub(){
+                fetch("https://api.github.com/users/pwcodigo")
+                .then(r => r.json())
+                .then(r => {
+                    this.github = r;
+                })
+
+            }
+
+        },
+        beforeCreate(){
+            console.log(this.mensagem);
+        }, created(){
+            this.puxarGithub();
+            console.log(this.mensagem);
+        }
+    });
+</script>
+
+</body>
+</html>
