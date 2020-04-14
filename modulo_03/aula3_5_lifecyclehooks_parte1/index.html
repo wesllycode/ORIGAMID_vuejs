@@ -9,7 +9,8 @@
 <body>
 
     <div id="app">
-        {{ github }}
+        <!-- {{ github }} -->
+        <button @click="contador++">{{ contador }}</button>
     </div>
 
 <script>
@@ -17,8 +18,10 @@
         el: "#app",
         data:{
             mensagem: "Mensagem",
-            github: {}
+            github: {},
+            contador: 0
         },
+        /*
         methods: {
             puxarGithub(){
                 fetch("https://api.github.com/users/pwcodigo")
@@ -27,14 +30,37 @@
                     this.github = r;
                 })
 
-            }
-
+            }   
         },
         beforeCreate(){
-            console.log(this.mensagem);
+            console.log("BeforeCreate: ",this.mensagem);
         }, created(){
             this.puxarGithub();
-            console.log(this.mensagem);
+            // Aqui puxa mensagem porque já inicia reatividade, contudo não puxa o elemento porque ainda não carregou.
+            console.log("Data Reativo Created: ",this.mensagem);
+            console.log("Elemento Created: ", this.$el)
+        },
+        beforeMount(){
+             // Observe aqui ele não popula as variaveis no Elemento beforeMount do vue e fica {{ mensagem }}
+            console.log("Data Reativo beforeMount ", this.mensagem);
+            console.log("Elemento beforeMount ",  this.$el);
+
+        },
+        mounted(){
+            // Observe aqui ele popula as variaveis no Elemento beforeMount do vue e exibi conteudo dentro do elemento
+            console.log("Elemento Mount ",  this.$el);
+
+        }
+        */
+        beforeUpdate(){
+            // Aqui dom ainda não foi atualizado
+            console.log("beforeUpdate: ", "teste");
+
+        },
+        updated(){
+            // Aqui depois que o dom é atualizado
+            console.log("update ","teste2");
+
         }
     });
 </script>
