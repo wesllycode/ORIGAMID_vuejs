@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/js/vue.js"></script>    
+    <title>aula 501</title>
+</head>
+<body>
+    <div id="app">
+        <input style="width:100px" type="text=" :value="message" />
+        <cadastrar></cadastrar>
+        <componente-local></componente-local>        
+    </div>
+    
+    <script>
+        // Aqui é um compoenente global
+        Vue.component("cadastrar", {
+            data(){
+                // Data daqui é uma função e não um metódo
+                return {
+                    message: "cadastrado com",
+                }
+            },
+            template: `<button @click="mostrarConsole">cadastrar</button>`,
+            methods:{
+                mostrarConsole(){
+                    console.log(this.message);
+                    console.log(this.msgMais);
+                } 
+            },
+            computed: {
+                msgMais(){
+                    return 'sucesso !';
+                }
+            }
+        });
+        
+        const componenteLocal = {
+            name: "componenteLocal",
+            template: `<button> Esqueci a senha </button>`
+        };
+
+
+        // Transformando componente local em global
+        Vue.component("componenteLocal", componenteLocal);
+        const vm = new Vue({
+            el: "#app",
+            // Inserindo compenente local
+            components:{
+                componenteLocal,
+            },
+            data:{
+                message: "pablo",
+            }
+        });
+    </script>
+</body>
+</html>
