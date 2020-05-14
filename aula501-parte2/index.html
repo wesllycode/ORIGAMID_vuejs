@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/js/vue.js"></script>    
+    <title>aula 502</title>
+</head>
+<body>
+    <div id="app">
+        <List-anime></list-anime>  
+        <menu-anime></menu-anime>      
+    </div>
+
+    <script type="module">
+        
+        import ListAnime from "./ListAnime.js";
+        import MenuAnime from "./MenuAnime.js";
+        // Aqui para registrar global
+        //Vue.component("ListAnime", ListAnime);
+        const vm = new Vue({
+            el: "#app",
+            // Para registrar local
+           components:{
+               ListAnime, MenuAnime
+           }
+        })
+
+    </script>
+</body>
+</html>
