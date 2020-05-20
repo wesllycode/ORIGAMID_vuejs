@@ -4,13 +4,7 @@ export default {
         return {
            tempe: ""
         };
-    },
-    template: ` <div>
-                    <p><b>Nome da cidade</b>: {{tempe.city}}</p>
-                    <p><b>Temperatura: </b>: {{ tempe.temp | Graus}}</p>
-                    <p><b>Descrição</b>: {{tempe.description}}</p>  
-                
-                </div>`,
+    },   
     created(){
         this.puxarApi();
     },
@@ -19,7 +13,6 @@ export default {
             value += "º"          
             return value;
         }
-
     },
     methods:{
         puxarApi(){
@@ -27,8 +20,13 @@ export default {
             .then(r => r.json())
             .then(r => {
                 this.tempe = r.results;
-            } )
+            });
         }
-    }
-    
+    },
+    template: ` 
+        <div>
+            <p><b>Nome da cidade</b>: {{tempe.city}}</p>
+            <p><b>Temperatura: </b>: {{ tempe.temp | Graus}}</p>
+            <p><b>Descrição</b>: {{tempe.description}}</p>  
+        </div>`,    
 }
