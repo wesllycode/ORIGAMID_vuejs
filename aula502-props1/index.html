@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/vue.js"></script>   
+    <title>Aula 502 - Props 1</title>
+</head>
+<body>
+    <!--
+            Devemos utilizar props para passarmos data de um componente
+            pai para um filho. O dado é passado como valor de um atributo
+            html
+    -->
+
+    <div id="app">
+        // Aqui é um componente local
+        <lista-produtos></lista-produtos>
+    </div>
+
+    <script type="module">
+        import ListaProdutos from "./components/ListaProdutos.js";
+        
+        const vm = new Vue({
+            el: "#app",
+            components:{
+                ListaProdutos
+            }
+           
+        });
+    </script>
+</body>
+</html>
