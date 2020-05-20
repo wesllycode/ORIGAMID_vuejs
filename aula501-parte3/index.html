@@ -29,7 +29,7 @@
 
 <div id="app">
     <tempo></tempo>
-    <money></money>
+    <valor-acao></valor-acao>
 </div>
 
  <script type="module">
@@ -37,7 +37,7 @@
  import Tempo from "./Tempo.js";
 
  // Aqui é um componente Local
- import Money from "./Money.js";
+ import valorAcao from "./valorAcao.js";
 
  Vue.component("Tempo", Tempo);
 
@@ -45,7 +45,7 @@
      const vm = new Vue ({
         el: "#app",
         components:{
-            Money
+            valorAcao,
         }   
      });
  </script>
