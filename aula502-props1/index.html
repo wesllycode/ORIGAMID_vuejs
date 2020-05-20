@@ -13,16 +13,21 @@
             html
     -->
 
-    <div id="app">
-        // Aqui é um componente local
-        <lista-produtos></lista-produtos>
+    <div id="app">        
+        <!-- Aqui é um componente local -->
+        <lista-produtos :frutas="lista" titulo="Lista de Frutas"></lista-produtos>
     </div>
 
     <script type="module">
+        
         import ListaProdutos from "./components/ListaProdutos.js";
         
         const vm = new Vue({
             el: "#app",
+            data:{
+                lista: ["Banana","Laranja","Uva"]
+            },
+            // Aqui para importar componente e fazer dele local
             components:{
                 ListaProdutos
             }

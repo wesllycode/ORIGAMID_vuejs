@@ -1,4 +1,13 @@
 export default{
     name: "ListaProdutos",
-    template: `<p>Lista</p>`,
+    props: ["frutas","titulo"],
+    template: `
+        <div>
+            <h1>{{titulo}}</h1>
+            <ul>
+                <li>{{frutas}}</li>
+            </ul>
+        </div>
+    
+    `,
 }
