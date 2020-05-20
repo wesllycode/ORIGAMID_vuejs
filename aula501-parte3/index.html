@@ -29,17 +29,24 @@
 
 <div id="app">
     <tempo></tempo>
+    <money></money>
 </div>
 
  <script type="module">
  // Aqui é um componente Global
  import Tempo from "./Tempo.js";
 
+ // Aqui é um componente Local
+ import Money from "./Money.js";
+
  Vue.component("Tempo", Tempo);
+
  
      const vm = new Vue ({
-        el: "#app",        
-       
+        el: "#app",
+        components:{
+            Money
+        }   
      });
  </script>
 </body>
