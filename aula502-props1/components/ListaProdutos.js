@@ -5,7 +5,7 @@ export default{
         <div>
             <h1>{{titulo}}</h1>
             <ul>
-                <li>{{frutas}}</li>
+                <li v-for="fruta in frutas">{{fruta}}</li>
             </ul>
         </div>
     
