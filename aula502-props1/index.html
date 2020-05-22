@@ -21,6 +21,9 @@
     <script type="module">
         
         import ListaProdutos from "./components/ListaProdutos.js";
+        import Produto from "./components/Produto.js";
+
+        Vue.component("ListaProdutos",ListaProdutos);
         
         const vm = new Vue({
             el: "#app",
@@ -29,7 +32,7 @@
             },
             // Aqui para importar componente e fazer dele local
             components:{
-                ListaProdutos
+               Produto
             }
            
         });
