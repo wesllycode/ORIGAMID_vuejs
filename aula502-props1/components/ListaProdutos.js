@@ -2,7 +2,13 @@ import Produto from "./Produto.js";
 
 export default{
     name: "ListaProdutos",
-    props: ["frutas","titulo"],
+    props: {frutas: Array,
+            titulo: {
+                type:String,
+                required:true,
+                default: "Sem titulo",
+            }
+        },
     components:{
         Produto
     },

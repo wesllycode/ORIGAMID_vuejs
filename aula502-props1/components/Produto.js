@@ -1,6 +1,8 @@
 export default{
-    name: "Produto",
-    props:["nomeDoProduto"],
+    name: "Produto",    
+    props:{
+        nomeDoProduto: String,
+    },
     template: `
          <div>
             <br><br>
