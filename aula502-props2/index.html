@@ -8,7 +8,8 @@
 </head>
 <body>
         <div id="app">
-           <botao-contador :valor="0"></botao-contador>
+            <p @click="total++">{{total}}</p>
+           <botao-contador :valor="total"></botao-contador>
         </div>
     
         <script type="module">

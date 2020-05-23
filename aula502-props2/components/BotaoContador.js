@@ -5,14 +5,10 @@ export default {
     },
     // Atenção aqui, atribui o valor para variável valorAtual, por causa da mutação 
     // tem parada no vue.js que dá erro quando atualiza a informação entre components.
-    data(){
-        return{
-            valorAtual: this.valor
-        }
-    },
+    // No Away - Código vem de cima para baixo. E nunca de baixo para cima.
     template: `
         <div>
-            <button @click="valorAtual++">Esse é o total {{valorAtual}}</button>
+            <button>Esse é o total {{valor}}</button>
         </div>
     `,
 }
