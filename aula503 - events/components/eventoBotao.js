@@ -12,6 +12,6 @@ export default{
     created(){
         setTimeout(() =>{
                 this.$emit("nomedoevento")
-            }, 2000)
+            }, 3000)
         },
     }

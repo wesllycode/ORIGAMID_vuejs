@@ -8,6 +8,7 @@
 </head>
 <body>
     <div id="app">
+        {{msg}}
         <evento-botao @nomedoevento="mostrarMensagem"></evento-botao>
     </div>
     <script type="module">
@@ -15,12 +16,16 @@
     //Vue.component("eventoBotao",eventoBotao);
         const vm = new Vue({
             el: "#app",
+            data:{
+                msg: "",
+            },
             components:{
                 eventoBotao,
+               
             },
             methods:{
                 mostrarMensagem(){
-                    console.log("mensagem");
+                    this.msg ="Deu certo";
                 }
             },           
         });
