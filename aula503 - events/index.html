@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/vue.js"></script>  
+    <title>aula503 - Events</title>
+</head>
+<body>
+    <div id="app">
+        <evento-botao @nomedoevento="mostrarMensagem"></evento-botao>
+    </div>
+    <script type="module">
+    import eventoBotao from "./components/eventoBotao.js";
+    //Vue.component("eventoBotao",eventoBotao);
+        const vm = new Vue({
+            el: "#app",
+            components:{
+                eventoBotao,
+            },
+            methods:{
+                mostrarMensagem(){
+                    console.log("mensagem");
+                }
+            },           
+        });
+        
+    </script>
+</body>
+</html>
