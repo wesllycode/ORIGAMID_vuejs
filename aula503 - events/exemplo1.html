@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/vue.js"></script>  
+    <title>aula503 - Events - PAREI NO 05:47</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}        
+        <!-- 
+                O meu evento é escutado dentro do meu componente aqui e não no arquivo lá dentro 
+                Esse @nomedoevento é evento que vem do emit
+
+                Outra coisa interessante, normalmente as informações do componente passa de pai para filho,
+                com eventos é possível passar de filho para pai
+        -->
+        <evento-botao @nomedoevento="mostrarMensagem"></evento-botao>
+    </div>
+    <script type="module">
+    import eventoBotao from "./components/eventoBotao.js";
+    //Vue.component("eventoBotao",eventoBotao);
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                msg: "",  
+                          
+            },
+            components:{
+                eventoBotao,
+               
+            },
+            methods:{
+                mostrarMensagem(mensagem){
+                    console.log(mensagem);
+                    this.msg ="Deu certo";
+                }
+            },           
+        });
+        
+    </script>
+</body>
+</html>
