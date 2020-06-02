@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/js/vue.js"></script>  
-    <title>aula503 - Events</title>
+    <title>aula503 - Events - PAREI NO 05:47</title>
 </head>
 <body>
     <div id="app">
         {{msg}}
+        <!-- 
+                O meu evento é escutado dentro do meu componente aqui e não no arquivo lá dentro 
+                Esse @nomedoevento é evento que vem do emit
+        -->
         <evento-botao @nomedoevento="mostrarMensagem"></evento-botao>
     </div>
     <script type="module">

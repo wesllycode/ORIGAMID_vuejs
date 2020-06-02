@@ -6,11 +6,12 @@ export default{
         </div>
     `,
     methods:{
-        handleClick(){            
+        handleClick(){     
+            console.log("CLICOI");
         }
     },
     created(){
-        setTimeout(() =>{
+        setTimeout(() =>{                
                 this.$emit("nomedoevento")
             }, 3000)
         },
