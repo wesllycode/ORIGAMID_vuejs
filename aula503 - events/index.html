@@ -16,26 +16,23 @@
                 Outra coisa interessante, normalmente as informações do componente passa de pai para filho,
                 com eventos é possível passar de filho para pai
         -->
-        <evento-botao @nomedoevento="mostrarMensagem"></evento-botao>
+        <evento-botao-two :total="contador"></evento-botao-two>
     </div>
     <script type="module">
-    import eventoBotao from "./components/eventoBotao.js";
+    import eventoBotaoTwo from "./components/eventoBotaoTwo.js";
     //Vue.component("eventoBotao",eventoBotao);
         const vm = new Vue({
             el: "#app",
             data:{
-                msg: "",   
+                contador: 0,  
                           
             },
             components:{
-                eventoBotao,
+                eventoBotaoTwo,
                
             },
-            methods:{
-                mostrarMensagem(mensagem){
-                    console.log(mensagem);
-                    this.msg ="Deu certo";
-                }
+            methods:{             
+            
             },           
         });
         
