@@ -10,6 +10,7 @@ export default{
     methods:{
         incrementar(){
             this.contadorComponente++;
+            console.log("atualizou o componente meu , mas não o principal do index");
             this.$emit("update:contador", this.contadorComponente)
         }
        
