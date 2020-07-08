@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colocando em prática</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <meu-botao @origamid="mostrarMensagem"></meu-botao>
+</div>
+
+<script type="module">
+import meuBotao from "./components/meuBotao.js";
+/*
+    Esse comando serve para importa components e colocar ele em global.
+    Vue.component(meuBotao,'meuBotao');
+ */
+const vm = new Vue ({
+    el: "#app",
+    data:{
+        nome: "Pablo",
+    },
+    components:{
+        meuBotao,
+    },
+    methods:{
+        mostrarMensagem(){
+            console.log("Aconteceu algo");
+        }
+    }
+})
+</script>
+</body>
+</html>

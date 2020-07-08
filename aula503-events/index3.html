@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/vue.js"></script>  
+    <title>aula503 - Events</title>
+</head>
+<body>
+    <div id="app"> 
+        <!-- 
+                O meu evento é escutado dentro do meu componente aqui e não no arquivo lá dentro 
+                Esse @nomedoevento é evento que vem do emit
+
+                Outra coisa interessante, normalmente as informações do componente passa de pai para filho,
+                com eventos é possível passar de filho para pai
+        -->
+
+         <!-- não podemos atualizar aqui vai direo vai dá erro 
+        vamos criar um evento para atualizar o contador 
+
+        <button @click="total++">Clique {{total}}</button>
+        -->
+        {{contador}}
+
+        <evento-botun 
+            :contador="contador"
+            @update:contador="contador = $event"           
+        ></evento-botun>
+    </div>
+    <script type="module">
+    import eventoBotun from "./components/eventoBotun.js";
+    //Vue.component("eventoBotao",eventoBotao);
+        const vm = new Vue({
+            el: "#app",
+            data:{
+                contador: 0,                            
+            },
+            components:{
+                eventoBotun,
+               
+            },                     
+        });
+        
+    </script>
+</body>
+</html>

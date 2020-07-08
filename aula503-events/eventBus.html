@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/vue.js"></script>  
+    <title>aula503 - Events - A partir 18min46seg</title>
+</head>
+<body>
+    <div id="app">   
+           <componente-um></componente-um> 
+           <componente-dois></componente-dois>       
+    </div>
+    <script type="module">
+
+    const EventBus = new Vue();
+
+    EventBus.$on("novoevento", ()=>{
+    console.log("Executando o evento ao clicar")
+    });
+
+    import componenteUm from "./components/componenteUm.js";
+    import componenteDois from "./components/componenteDois.js";     
+         const vm = new Vue({
+             el: "#app",
+             components: {
+                 componenteUm,  
+                 componenteDois              
+             }
+         })
+    </script>
+</body>
+</html>
