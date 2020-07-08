@@ -9,8 +9,7 @@ export default{
     template:`<button @click="incrementar">Clique {{ contadorComponente }}</button>`,    
     methods:{
         incrementar(){
-            this.contadorComponente++;
-            console.log("atualizou o componente meu , mas não o principal do index");
+            this.contadorComponente++;            
             this.$emit("update:contador", this.contadorComponente)
         }
        
