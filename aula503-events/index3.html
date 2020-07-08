@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/js/vue.js"></script>  
-    <title>aula503 - Adicionaro Sync</title>
+    <title>aula503 - Events</title>
 </head>
 <body>
     <div id="app"> 
@@ -22,14 +22,10 @@
         <button @click="total++">Clique {{total}}</button>
         -->
         {{contador}}
-        
-        <!-- 
-            Aqui direto @update:contador e altero pelo atalho do vue.js
-            .sync
-        -->
+
         <evento-botun 
-            :contador.sync="contador"
-                       
+            :contador="contador"
+            @update:contador="contador = $event"           
         ></evento-botun>
     </div>
     <script type="module">
